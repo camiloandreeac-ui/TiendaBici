@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Trailhead MTB Hub</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="public/css/styles.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="ph-fill ph-mountains"></i>
+                <div class="logo-text">
+                    <span class="brand">TRAILHEAD</span>
+                    <span class="sub-brand">MTB HUB</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="catalog.html" class="active" style="color: var(--color-primary);">Bicicletas</a></li>
+                    <li><a href="catalog.html">Componentes</a></li>
+                    <li><a href="index.html#workshop">Taller</a></li>
+                    <li><a href="index.html#community">Comunidad</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="icon-btn"><i class="ph ph-user"></i></a>
+                <a href="cart.html" class="icon-btn"><i class="ph ph-shopping-cart"></i></a>
+                <button class="mobile-menu-btn" aria-label="Abrir menú"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">BICICLETAS</h1>
+            <p>Diseñadas para dominar desde el sendero local hasta la Copa del Mundo.</p>
+        </div>
+    </section>
+
+    <!-- CATALOG CONTENT -->
+    <main class="container section-padding">
+
+        <!-- FILTERS BAR -->
+        <div class="filters-bar">
+            <span>Mostrando 6 resultados</span>
+            <div style="display: flex; gap: 15px;">
+                <select style="padding: 5px;">
+                    <option>Ordenar por: Destacados</option>
+                    <option>Precio: Menor a Mayor</option>
+                    <option>Precio: Mayor a Menor</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- PRODUCTS GRID -->
+        <div class="categories-grid"> <!-- Reusing existing grid class for simplicity -->
+
+            <!-- Product 1 -->
+            <article class="category-card"
+                style="height: auto; background: white; color: black; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <div class="cat-image placeholder-grey" style="height: 300px; opacity: 1;"></div>
+                <div class="cat-info" style="position: relative; color: black; padding: 15px;">
+                    <h3 style="font-size: 1.5rem;">Stumpjumper EVO</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Trail / Enduro</p>
+                    <div class="product-price">$4.500.000</div>
+                    <a href="product.html" class="btn btn-primary"
+                        style="width: 100%; text-align: center; margin-top: 10px; font-size: 1rem;">VER DETALLE</a>
+                </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="category-card"
+                style="height: auto; background: white; color: black; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <div class="cat-image placeholder-grey" style="height: 300px; opacity: 1;"></div>
+                <div class="cat-info" style="position: relative; color: black; padding: 15px;">
+                    <h3 style="font-size: 1.5rem;">Epic World Cup</h3>
+                    <p style="color: #666; font-size: 0.9rem;">XC Race</p>
+                    <div class="product-price">$8.200.000</div>
+                    <a href="product.html" class="btn btn-outline"
+                        style="width: 100%; text-align: center; margin-top: 10px; font-size: 1rem; border-color: black; color: black;">VER
+                        DETALLE</a>
+                </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="category-card"
+                style="height: auto; background: white; color: black; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <div class="cat-image placeholder-grey" style="height: 300px; opacity: 1;"></div>
+                <div class="cat-info" style="position: relative; color: black; padding: 15px;">
+                    <h3 style="font-size: 1.5rem;">Levo SL Gen 2</h3>
+                    <p style="color: #666; font-size: 0.9rem;">E-Bike Lightweight</p>
+                    <div class="product-price">$9.500.000</div>
+                    <a href="product.html" class="btn btn-outline"
+                        style="width: 100%; text-align: center; margin-top: 10px; font-size: 1rem; border-color: black; color: black;">VER
+                        DETALLE</a>
+                </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="category-card"
+                style="height: auto; background: white; color: black; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <div class="cat-image placeholder-grey" style="height: 300px; opacity: 1;"></div>
+                <div class="cat-info" style="position: relative; color: black; padding: 15px;">
+                    <h3 style="font-size: 1.5rem;">Kenevo Expert</h3>
+                    <p style="color: #666; font-size: 0.9rem;">E-Bike Enduro</p>
+                    <div class="product-price">$7.800.000</div>
+                    <a href="product.html" class="btn btn-outline"
+                        style="width: 100%; text-align: center; margin-top: 10px; font-size: 1rem; border-color: black; color: black;">VER
+                        DETALLE</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Trailhead MTB Hub. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="public/js/main.js"></script>
+</body>
+
+</html>
