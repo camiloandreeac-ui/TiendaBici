@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Punto de Venta - Trailhead</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Specific override for POS layout */
+        .dashboard-container {
+            grid-template-columns: 80px 1fr 350px;
+        }
+
+        /* Slim sidebar, grid, cart panel */
+        .sidebar {
+            align-items: center;
+            padding: 20px 10px;
+        }
+
+        .sidebar-brand span {
+            display: none;
+        }
+
+        .sidebar-menu span {
+            display: none;
+        }
+
+        .sidebar-menu a {
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .pos-grid-container {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body style="overflow: hidden; height: 100vh;">
+
+    <div class="dashboard-container">
+
+        <!-- COMPACT SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand" style="margin-bottom: 30px;">
+                <i class="ph-fill ph-mountains" style="font-size: 2rem;"></i>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active" title="Ventas"><i class="ph ph-shopping-cart"
+                            style="font-size: 1.5rem;"></i></a></li>
+                <li><a href="#" title="Clientes"><i class="ph ph-users" style="font-size: 1.5rem;"></i></a></li>
+                <li><a href="#" title="Inventario"><i class="ph ph-package" style="font-size: 1.5rem;"></i></a></li>
+            </ul>
+            <a href="/logout" title="Salir" style="color: #666; font-size: 1.5rem; margin-top: auto;"><i
+                    class="ph ph-sign-out"></i></a>
+        </aside>
+
+        <!-- MAIN POS AREA -->
+        <main class="pos-grid-container">
+            <header style="margin-bottom: 20px; display: flex; gap: 10px;">
+                <input type="text" class="form-input" placeholder="Buscar producto (Escáner o Nombre)..."
+                    style="font-size: 1.2rem;">
+            </header>
+
+            <!-- PRODUCTS GRID -->
+            <div class="pos-grid">
+                <!-- Product 1 -->
+                <div class="pos-product-card" onclick="addToPosCart('Stumpjumper EVO', 4500000)">
+                    <div class="pos-product-img"></div>
+                    <div class="pos-product-title">Stumpjumper EVO</div>
+                    <div class="pos-product-price">$4.500.000</div>
+                </div>
+                <!-- Product 2 -->
+                <div class="pos-product-card" onclick="addToPosCart('Casco Fox', 180000)">
+                    <div class="pos-product-img"></div>
+                    <div class="pos-product-title">Casco Fox</div>
+                    <div class="pos-product-price">$180.000</div>
+                </div>
+                <!-- Product 3 -->
+                <div class="pos-product-card" onclick="addToPosCart('Guantes TLD', 45000)">
+                    <div class="pos-product-img"></div>
+                    <div class="pos-product-title">Guantes TLD</div>
+                    <div class="pos-product-price">$45.000</div>
+                </div>
+                <!-- Product 4 -->
+                <div class="pos-product-card" onclick="addToPosCart('Maxxis Minion DHF', 65000)">
+                    <div class="pos-product-img"></div>
+                    <div class="pos-product-title">Maxxis Minion DHF</div>
+                    <div class="pos-product-price">$65.000</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- CART PANEL -->
+        <aside
+            style="background: white; border-left: 1px solid #ddd; padding: 20px; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; mb-4">
+                <h3>Orden #1025</h3>
+                <span class="tag"
+                    style="background: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">En
+                    Proceso</span>
+            </div>
+
+            <div id="pos-cart-items"
+                style="flex-grow: 1; overflow-y: auto; margin: 20px 0; border-top: 1px solid #eee;">
+                <!-- Items will be injected here via JS -->
+                <div style="text-align: center; color: #999; margin-top: 50px;">
+                    <i class="ph ph-shopping-basket" style="font-size: 3rem; margin-bottom: 10px; display: block;"></i>
+                    Carro vacío
+                </div>
+            </div>
+
+            <div style="border-top: 2px solid #333; padding-top: 20px;">
+                <div class="summary-row total">
+                    <span>TOTAL</span>
+                    <span id="pos-total">$0</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; height: 50px; font-size: 1.2rem;">COBRAR
+                    (F12)</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <script>
+        // Simple POS Logic
+        let cart = [];
+        const formatMoney = (amount) => '$' + amount.toLocaleString('es-CL');
+
+        function addToPosCart(name, price) {
+            cart.push({ name, price });
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('pos-cart-items');
+            const totalEl = document.getElementById('pos-total');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #999; margin-top: 50px;">Carro vacío</div>';
+                totalEl.innerText = '$0';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                        <div>
+                            <div style="font-weight: 600;">${item.name}</div>
+                            <div style="font-size: 0.85rem; color: #666;">1 x ${formatMoney(item.price)}</div>
+                        </div>
+                        <div style="font-weight: bold;">${formatMoney(item.price)}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            totalEl.innerText = formatMoney(total);
+        }
+    </script>
+
+</body>
+
+</html>
