@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo - Trailhead MTB Hub</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="/" class="logo">
+                <i class="ph-fill ph-mountains"></i>
+                <div class="logo-text">
+                    <span class="brand">TRAILHEAD</span>
+                    <span class="sub-brand">MTB HUB</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="/catalog" class="active">Bicicletas</a></li>
+                    <li><a href="/catalog">Componentes</a></li>
+                    <li><a href="/#workshop">Taller</a></li>
+                    <li><a href="/#community">Comunidad</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="/login" class="icon-btn"><i class="ph ph-user"></i></a>
+                <a href="/cart" class="icon-btn"><i class="ph ph-shopping-cart"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">CATÁLOGO COMPLETO</h1>
+            <p>Todo lo que necesitas para tu próxima salida.</p>
+        </div>
+    </section>
+
+    <main class="container section-padding">
+        <div class="categories-grid">
+            <!-- This would be dynamic in a real loop -->
+            <% if (typeof products !=='undefined' && products.length> 0) { %>
+                <% products.forEach(function(product) { %>
+                    <article class="category-card"
+                        style="height: auto; background: white; color: black; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <div class="cat-image placeholder-grey" style="height: 300px; opacity: 1;"></div>
+                        <div class="cat-info" style="position: relative; color: black; padding: 15px;">
+                            <h3>
+                                <%= product.name %>
+                            </h3>
+                            <p style="color: #666; font-size: 0.9rem;">
+                                <%= product.category %>
+                            </p>
+                            <div class="product-price">$<%= product.price %>
+                            </div>
+                            <a href="#" class="btn btn-primary"
+                                style="width: 100%; text-align: center; margin-top: 10px;">VER DETALLE</a>
+                        </div>
+                    </article>
+                    <% }); %>
+                        <% } else { %>
+                            <p>Cargando productos del sistema...</p>
+                            <!-- Static Fallback for Demo -->
+                            <article class="category-card"
+                                style="height: auto; background: white; color: black; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                                <div class="cat-info" style="position: relative; color: black; padding: 15px;">
+                                    <h3>Stumpjumper EVO (Demo)</h3>
+                                    <div class="product-price">$4.500.000</div>
+                                </div>
+                            </article>
+                            <% } %>
+        </div>
+    </main>
+</body>
+
+</html>
