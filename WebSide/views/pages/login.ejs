@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Trailhead MTB Hub</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="/" class="logo">
+                <i class="ph-fill ph-mountains"></i>
+                <div class="logo-text">
+                    <span class="brand">TRAILHEAD</span>
+                    <span class="sub-brand">MTB HUB</span>
+                </div>
+            </a>
+            <a href="/" class="btn btn-outline" style="font-size: 0.9rem; padding: 8px 16px;">VOLVER</a>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1 class="auth-title">ACCESO ROLES</h1>
+                <p>Ingresa tus credenciales corporativas.</p>
+            </div>
+
+            <% if (error) { %>
+                <div
+                    style="background: #ffebee; color: #c62828; padding: 10px; border-radius: 4px; margin-bottom: 15px; text-align: center;">
+                    <%= error %>
+                </div>
+                <% } %>
+
+                    <form action="/login" method="POST">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" class="form-input"
+                                placeholder="admin@trailhead.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" id="password" name="password" class="form-input"
+                                placeholder="********" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">INICIAR
+                            SESIÓN</button>
+                    </form>
+
+                    <div style="margin-top: 20px; font-size: 0.8rem; color: #666;">
+                        <p>Credenciales Demo:</p>
+                        <ul>
+                            <li>Admin: admin@trailhead.com / admin123</li>
+                            <li>Gerente: gerente@trailhead.com / gerente123</li>
+                            <li>Vendedor: vendedor@trailhead.com / vendedor123</li>
+                        </ul>
+                    </div>
+        </div>
+    </main>
+</body>
+
+</html>
