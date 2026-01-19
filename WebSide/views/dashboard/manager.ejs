@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerencia Dashboard - Trailhead</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body style="background-color: #f4f6f8;">
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="ph-fill ph-mountains"></i> TRAILHEAD
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="ph ph-chart-line-up"></i> Resumen</a></li>
+                <li><a href="#"><i class="ph ph-trend-up"></i> Ventas</a></li>
+                <li><a href="#"><i class="ph ph-package"></i> Inventario</a></li>
+                <li><a href="#"><i class="ph ph-users"></i> Empleados</a></li>
+            </ul>
+            <a href="/logout" class="btn btn-outline" style="text-align: center; margin-top: auto;">Cerrar Sesión</a>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-content">
+            <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2>Panel de Gerencia</h2>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="text-align: right;">
+                        <span style="display: block; font-weight: bold;">
+                            <%= user.name %>
+                        </span>
+                        <span style="font-size: 0.8rem; color: #666;">Gerente General</span>
+                    </div>
+                    <div style="width: 40px; height: 40px; background: #ddd; border-radius: 50%;"></div>
+                </div>
+            </header>
+
+            <!-- KPI CARDS -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px;">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Ingresos Mes</h4>
+                        <div class="value">$12.5M</div>
+                        <span style="color: green; font-size: 0.8rem;">▲ 15% vs mes anterior</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Margen Promedio</h4>
+                        <div class="value">32%</div>
+                        <span style="color: orange; font-size: 0.8rem;">= Estable</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Ticket Promedio</h4>
+                        <div class="value">$145.000</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Nuevos Clientes</h4>
+                        <div class="value">24</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHARTS ROW -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+                <div class="auth-card" style="padding: 20px;">
+                    <h3>Tendencia de Ventas (2024)</h3>
+                    <canvas id="salesChart" height="150"></canvas>
+                </div>
+                <div class="auth-card" style="padding: 20px;">
+                    <h3>Top Categorías</h3>
+                    <canvas id="categoryChart" height="200"></canvas>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // MOCK CHARTS
+        const ctxSales = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctxSales, {
+            type: 'line',
+            data: {
+                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Ventas (Millones)',
+                    data: [8, 9, 7, 11, 10, 12.5],
+                    borderColor: '#FF5722',
+                    tension: 0.4
+                }]
+            }
+        });
+
+        const ctxCat = document.getElementById('categoryChart').getContext('2d');
+        new Chart(ctxCat, {
+            type: 'doughnut',
+            data: {
+                labels: ['Bicicletas', 'Comp.', 'Accesorios'],
+                datasets: [{
+                    data: [60, 25, 15],
+                    backgroundColor: ['#FF5722', '#333', '#ccc']
+                }]
+            }
+        });
+    </script>
+</body>
+
+</html>
